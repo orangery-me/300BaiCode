@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <deque>
-
 using namespace std;
 
 class Solution {
@@ -41,4 +40,5 @@ int main(){
     for (int it: p.countBits(n) ){
         cout <<it<<" ";
     }
+    cout <<endl;
 }
