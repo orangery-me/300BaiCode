@@ -5,9 +5,6 @@
 //  Created by Đinh Bảo Châu Thi on 12/30/22.
 //
 
-#include <iostream>
-using namespace std;
-
 class Solution {
 public:
     int firstBadVersion(int n) {
@@ -25,8 +22,3 @@ public:
     }
 };
 
-int main(int argc, const char * argv[]) {
-    int n; cin >>n;
-    Solution(1,n);
-    return 0;
-}
