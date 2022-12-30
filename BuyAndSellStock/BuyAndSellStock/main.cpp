@@ -5,7 +5,7 @@
 //  Created by Đinh Bảo Châu Thi on 12/29/22.
 //
 
-// Loi giai ban dau
+// C1: Loi giai ban dau
 
 class Solution {
 public:
@@ -35,7 +35,7 @@ public:
     }
 };
 
-// Loi giai toi uu
+// C2; Loi giai toi uu
 
 class Solution {
 public:
