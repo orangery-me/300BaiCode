@@ -5,17 +5,11 @@
 //  Created by Đinh Bảo Châu Thi on 12/29/22.
 //
 
-#include <iostream>
-#include <stack>
-#include <vector>
-using namespace std;
+// Loi giai ban dau
 
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        /*
-         c1:
-         
         stack <int> ucv;
         ucv.push(prices[0]);
         int nmax=0,dau=prices[0];
@@ -38,7 +32,14 @@ public:
             }
         }
         return nmax;
-         */
+    }
+};
+
+// Loi giai toi uu
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
         int l=0, r=1, nmax=0;
         while (r< prices.size()){
             if (prices[r] > prices[l]){
@@ -53,6 +54,8 @@ public:
         return nmax;
     }
 };
+
+// Ham main
 int main(int argc, const char * argv[]) {
     Solution p;
     vector <int> prices;
