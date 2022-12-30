@@ -20,7 +20,7 @@ public:
                 }
                 
                 now.push_front(1);
-                now.pop_back();
+   
                 count++;
                 while (!now.empty()){
                     int x=now.back();
