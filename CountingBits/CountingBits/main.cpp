@@ -2,37 +2,24 @@
 #include <vector>
 #include <deque>
 using namespace std;
-
+// c2: o(n)
 class Solution {
 public:
     vector<int> countBits(int n) {
-        vector <int> res={0,1};
-
-        deque <int> now;
-        now.push_back(1);
-        int count=1;
-       for (int i=2; i<=n; ++i){
-                while (now.back() ==1){
-                    now.pop_back();
-                    now.push_front(0);
-                    count--;
-                }
-                
-                now.push_front(1);
-   
-                count++;
-                while (!now.empty()){
-                    int x=now.back();
-                    now.push_front(x);
-                    now.pop_back();
-                }
-            
+        // mang dem luu so chu so 1 trong so nhi phan
+        vector <int> dem(n+1);
+        dem[0]=0;
+        
+        for (int i=1; i<=n; ++i){
+            // vd 7=111; 3=0110 => dem[7]= dem[3]+1;
+            // vd 6=110 3=0110 => dem[6]=dem[3]+0;
+            dem[i]=dem[i/2]+ i%2;
 
         }
-        res.push_back(count);
-        return res;
+        return dem;
     }
 };
+
 int main(){
     int n; cin>>n;
     Solution p;
