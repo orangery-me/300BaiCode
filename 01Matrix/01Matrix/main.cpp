@@ -6,45 +6,73 @@
 //
 
 #include <iostream>
+#include <queue>
 #include <vector>
 using namespace std;
+
 
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        vector<vector<int>> res;
         int di[4]={-1,0,0,1};
         int dj[4]={0,-1,1,0};
-        for (int i=0; i< mat.size(); ++i){
-            for (int j=0; i< mat[i].size(); ++j)
-                if (mat[i][j] ==0 )
-                    res[i][j]=0;
-                else
-                    for (int t=0; t<4; ++t){
-                        if (res[i][j] !=0 )
-                            res[i][j]=min( res[i][j], res[i+di[t]][j+dj[t]] +1);
-                        else
-                            res[i][j]= res[i+di[t]][j+dj[t]] +1;
-                    }
+        int n=mat.size();
+        int m=mat[0].size();
+        //vector <vector<int>> res;
+        queue <pair<int,int>> q;
+        
+        for (int i=0; i< n; ++i){
+            for (int j=0; i< m; ++j)
+                // if value of a cell is 0 -> res=0 and push in queue
+                if (mat[i][j] ==0 ){
+                   // res[i][j]=0;
+                    q.push({i,j});
+                }
+                else // mark as unvisted
+                    mat[i][j]=-1;
         }
-        return res;
+        
+        while (! q.empty()){
+            pair <int,int> top= q.front();
+            q.pop();
+            int x=top.first;
+            int y=top.second;
+            
+            for (int i=0; i<4; ++i){
+                int newx= x+di[i]; int newy= y+dj[i];
+                
+                if (newx <0 || newx ==n || newy <0 || newy ==m|| mat[ newx ][ newy ] !=-1)
+                    continue;
+                mat[ newx ][ newy ]= mat[x][y] +1;
+            }
+            
+        }
+        
+        return mat;
+        
     }
 };
 
-int main(int argc, const char * argv[]) {
+int main() {
     vector <vector <int>> mat;
-    int n,m; cin>>n>>m;
-    for (int i=0; i<m; ++i)
-        for (int j=0; j<n;++j){
-            int x; cin>>x;
-            mat[i].push_back(x);
-        }
     
+    int n,m; cin>>n>>m;
+    
+    for (int i=0; i<n; ++i){
+        vector <int> row;
+    
+        for (int j=0; j<m;++j){
+            int x; cin>>x;
+            row.push_back(x);
+        }
+        mat.push_back(row);
+    }
     Solution p;
-
-    for (auto a:p.updateMatrix(mat) ){
-        for (auto b: a)
-            cout <<b<<" ";
+    
+    for (auto it: p.updateMatrix(mat)){
+        for (auto tm: it)
+            cout <<tm<<" ";
         cout <<endl;
     }
+  
 }
